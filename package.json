@@ -1,11 +1,11 @@
 {
   "name": "react-boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "React Boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config config/webpack.config.js --env.env=dev",
-    "build": "webpack --config config/webpack.config.js --env.env=prod",
+    "start": "webpack-dev-server --config config/webpack.config.js --env.env=development",
+    "build": "webpack --config config/webpack.config.js --env.env=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -28,10 +28,13 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
     "prettier": "1.18.2",
     "webpack": "^4.39.3",
+    "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.3.7",
+    "webpack-dashboard": "^3.0.7",
     "webpack-dev-server": "^3.8.0",
     "webpack-merge": "^4.2.2"
   },

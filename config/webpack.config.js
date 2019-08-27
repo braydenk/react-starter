@@ -1,58 +1,43 @@
-const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Common webpack configuration
+const devConfig = require('./webpack.dev');
+const prodConfig = require('./webpack.prod');
+
+// Common configuration
 const commonConfig = {
   entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    // publicPath
+    filename: 'bundle.js',
+  },
+  resolve: {
+    // Allow absolute imports
+    // modules: ['node_modules', 'src'],
+    // extensions: [?]
+  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        loader: ['babel-loader', 'eslint-loader'],
       },
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      filename: './index.html',
     }),
   ],
-  output: {
-    path: path.resolve(__dirname, '../', 'dist'),
-    publicPath: '/',
-    filename: 'bundle.js',
-  },
 };
 
-function getWebpackDevConfig() {
-  return {
-    mode: 'development',
-    devtool: 'eval-source-map',
-    plugins: [new webpack.HotModuleReplacementPlugin()],
-    devServer: {
-      contentBase: './dist',
-      hot: true,
-    },
-  };
-}
-
-function getWebpackProdConfig() {
-  return {
-    mode: 'production',
-    devtool: 'source-map',
-    plugins: [],
-  };
-}
-
 module.exports = ({ env }) => {
-  const isDevEnv = env === 'dev';
+  const isDevEnv = env === 'development';
 
-  const envConfig = isDevEnv ? getWebpackDevConfig() : getWebpackProdConfig();
-
+  const envConfig = isDevEnv ? devConfig : prodConfig;
   return webpackMerge(commonConfig, envConfig);
 };
