@@ -15,11 +15,15 @@ const commonConfig = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: ['babel-loader', 'eslint-loader'],
       },
     ],
+  },
+  resolve: {
+    modules: ['node_modules', 'src'],
+    extensions: ['', 'js', 'jsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({
