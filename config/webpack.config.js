@@ -10,13 +10,7 @@ const commonConfig = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    // publicPath
     filename: 'bundle.js',
-  },
-  resolve: {
-    // Allow absolute imports
-    // modules: ['node_modules', 'src'],
-    // extensions: [?]
   },
   module: {
     rules: [
@@ -29,7 +23,7 @@ const commonConfig = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
       filename: './index.html',
     }),
   ],
