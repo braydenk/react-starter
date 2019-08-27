@@ -1,4 +1,5 @@
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
 import GlobalStyle from './reset.css';
 
 function App() {
@@ -10,4 +11,4 @@ function App() {
   );
 }
 
-export default App;
+export default hot(App);
